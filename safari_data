@@ -1,4 +1,49 @@
-DROP TABLE IF EXISTS staff;
-DROP TABLE IF EXISTS animal;
 DROP TABLE IF EXISTS assignment;
+DROP TABLE IF EXISTS animal;
 DROP TABLE IF EXISTS enclosure;
+DROP TABLE IF EXISTS staff;
+
+CREATE TABLE staff (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(255),
+    employee_number INT
+);
+
+CREATE TABLE enclosure (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(255),
+    capacity INT,
+    closedForMaintenance BOOLEAN
+);
+
+CREATE TABLE animal (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(255),
+    type VARCHAR(255),
+    age INT,
+    enclosure_id INTEGER REFERENCES enclosure(id) NOT NULL
+);
+
+CREATE TABLE assignment (
+    id SERIAL PRIMARY KEY,
+    employeeId INTEGER REFERENCES staff(employee_number) NOT NULL,
+    enclosureId INTEGER REFERENCES enclosure(id) NOT NULL
+);
+
+INSERT INTO animals (name, type, age, enclosure_id) VALUES ();
+INSERT INTO animals (name, type, age, enclosure_id) VALUES ();
+INSERT INTO animals (name, type, age, enclosure_id) VALUES ();
+INSERT INTO animals (name, type, age, enclosure_id) VALUES ();
+
+INSERT INTO enclosure (name, capacity, closedForMaintenance) VALUES ();
+INSERT INTO enclosure (name, capacity, closedForMaintenance) VALUES ();
+
+INSERT INTO staff (name, employee_number) VALUES ();
+INSERT INTO staff (name, employee_number) VALUES ();
+INSERT INTO staff (name, employee_number) VALUES ();
+
+INSERT INTO assignment (employeeId, enclosureId, day) VALUES ();
+INSERT INTO assignment (employeeId, enclosureId, day) VALUES ();
+INSERT INTO assignment (employeeId, enclosureId, day) VALUES ();
+INSERT INTO assignment (employeeId, enclosureId, day) VALUES ();
+INSERT INTO assignment (employeeId, enclosureId, day) VALUES ();
