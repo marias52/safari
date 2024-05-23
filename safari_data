@@ -30,20 +30,34 @@ CREATE TABLE assignment (
     enclosureId INTEGER REFERENCES enclosure(id) NOT NULL
 );
 
-INSERT INTO animals (name, type, age, enclosure_id) VALUES ();
-INSERT INTO animals (name, type, age, enclosure_id) VALUES ();
-INSERT INTO animals (name, type, age, enclosure_id) VALUES ();
-INSERT INTO animals (name, type, age, enclosure_id) VALUES ();
+INSERT INTO animals (name, type, age, enclosure_id) VALUES ('Tony', 'Tiger', 59, 1);
+INSERT INTO animals (name, type, age, enclosure_id) VALUES ('George', 'Lion', 50, 1);
+INSERT INTO animals (name, type, age, enclosure_id) VALUES ('Marty', 'Zebra', 23, 2);
+INSERT INTO animals (name, type, age, enclosure_id) VALUES ('Melman', 'Giraffe', 40 ,2);
 
-INSERT INTO enclosure (name, capacity, closedForMaintenance) VALUES ();
-INSERT INTO enclosure (name, capacity, closedForMaintenance) VALUES ();
+INSERT INTO enclosure (name, capacity, closedForMaintenance) VALUES ('big cat field', 20, false);
+INSERT INTO enclosure (name, capacity, closedForMaintenance) VALUES ('patterened animal park', 5, false);
+INSERT INTO enclosure (name, capacity, closedForMaintenance) VALUES ('elephant pond', 0, true);
 
-INSERT INTO staff (name, employee_number) VALUES ();
-INSERT INTO staff (name, employee_number) VALUES ();
-INSERT INTO staff (name, employee_number) VALUES ();
 
-INSERT INTO assignment (employeeId, enclosureId, day) VALUES ();
-INSERT INTO assignment (employeeId, enclosureId, day) VALUES ();
-INSERT INTO assignment (employeeId, enclosureId, day) VALUES ();
-INSERT INTO assignment (employeeId, enclosureId, day) VALUES ();
-INSERT INTO assignment (employeeId, enclosureId, day) VALUES ();
+INSERT INTO staff (name, employee_number) VALUES ('Captain Rik', 12345);
+INSERT INTO staff (name, employee_number) VALUES ('Princess Kate', 21795);
+INSERT INTO staff (name, employee_number) VALUES ('Dr Maria', 18043);
+
+INSERT INTO assignment (employeeId, enclosureId, day) VALUES (3, 2, 'Monday');
+INSERT INTO assignment (employeeId, enclosureId, day) VALUES (1, 1, 'Tuesday');
+INSERT INTO assignment (employeeId, enclosureId, day) VALUES (2, 2, 'Wednesday');
+INSERT INTO assignment (employeeId, enclosureId, day) VALUES (3, 1, 'Thursday');
+INSERT INTO assignment (employeeId, enclosureId, day) VALUES (1, 2, 'Friday');
+INSERT INTO assignment (employeeId, enclosureId, day) VALUES (2, 1, 'Saturday');
+INSERT INTO assignment (employeeId, enclosureId, day) VALUES (3, 2, 'Sunday');
+
+
+--Queries--
+--FIND the names of the animals in a given enclosure--
+
+SELECT name FROM animals
+INNER JOIN enclosure
+ON enclosure.id = animal.enclosure_id
+;
+
