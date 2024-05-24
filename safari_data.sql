@@ -55,7 +55,6 @@ INSERT INTO assignments (employeeId, enclosureId, day) VALUES (3, 3, 'Sunday');
 
 -- QUERIES
 -- 1. Find the names of the animals in a given enclosure
-
 SELECT animals.name FROM animals
 INNER JOIN enclosures
 ON enclosures.id = animals.enclosure_id
@@ -82,3 +81,35 @@ SELECT enclosures.name FROM enclosures
 INNER JOIN animals
 ON enclosures.id = animals.enclosure_id
 ORDER BY animals.age DESC, animals.name ASC LIMIT 1;
+
+-- 5. Find the number of different animal types a given keeper has been assigned to work with.
+SELECT COUNT(DISTINCT animals.type) FROM animals
+INNER JOIN enclosures
+ON animals.enclosure_id = enclosures.id
+INNER JOIN assignments
+ON assignments.enclosureId = enclosures.id
+WHERE assignments.employeeId = 1;
+
+-- 6. Find the number of different keepers who have been assigned to work in a given enclosure
+SELECT COUNT(DISTINCT staff) FROM staff
+INNER JOIN assignments
+ON staff.id = assignments.employeeId
+INNER JOIN enclosures
+ON enclosures.id = assignments.enclosureId
+WHERE enclosures.id = 2;
+
+-- 7. Find names of the other animals sharing an enclosure with a given animal (eg. find the names of all the animals sharing the big cat field with Tony)
+SELECT roommates.name FROM animals
+INNER JOIN enclosures
+ON animals.enclosure_id = enclosures.id
+INNER JOIN animals as roommates
+ON enclosures.id = roommates.enclosure_id
+WHERE animals.id = 1
+AND roommates.id != 1;
+
+-- OR SIMPLER
+SELECT roommates.name FROM animals
+INNER JOIN animals as roommates
+ON animals.enclosure_id = roommates.enclosure_id
+WHERE animals.id = 1
+AND roommates.id != 1;
